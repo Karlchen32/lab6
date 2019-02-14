@@ -27,4 +27,20 @@ function addProjectDetails(e) {
 	var idNumber = projectID.substr('project'.length);
 
 	console.log("User clicked on project " + idNumber);
+	var url ='/project/' + idNumber;
+	console.log("url = " + url);
+	$.get(url, callback);
+}
+
+function callback(result) {
+
+	console.log(result);
+	var projectHTML= '<a href="#" class="thumbnail">' +
+	'<img src=' + result['image'] + 'class="img detailsImage">'
+	'<p>' + result['title'] + '</p'
+	'<p><small>' + result['date'] + '</small></p>' +
+	'<p>' + result['summary'] + '</p>';
+
+	var idname = 'project' + result['id'];
+	$("#" + idname + " .details").html(projecthtml);
 }
